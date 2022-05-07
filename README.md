@@ -13,6 +13,10 @@ Dart SDK version: 2.16.2 (stable) (Tue Mar 22 13:15:13 2022 +0100) on "macos_x64
 
 # 技術情報
 
+## 依存ライブラリ
+
+[pubspec.yaml](./pubspec.yaml) を参照
+
 ## 利用API
 
 - [OpenWeatherMap](https://openweathermap.org/)
