@@ -1,0 +1,3 @@
+class Clouds {
+  int all;
+}
