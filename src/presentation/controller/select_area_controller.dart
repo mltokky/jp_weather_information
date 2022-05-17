@@ -4,7 +4,7 @@ import '../../application/geo_service.dart';
 import '../../domain/model/selection_area.dart';
 
 class SelectAreaController {
-  GeoService _geoService = GeoService(null);
+  final GeoService _geoService = GeoService();
 
   Future<SelectionArea> execute() async {
     // 都道府県を選択

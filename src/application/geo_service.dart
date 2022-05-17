@@ -1,11 +1,9 @@
+import 'package:get_it/get_it.dart';
+
 import '../domain/service/geo_repository.dart';
 
 class GeoService {
-  GeoRepository _geoRepository;
-
-  GeoService(GeoRepository geoRepository) {
-    _geoRepository = geoRepository;
-  }
+  final GeoRepository _geoRepository = GetIt.I.get();
 
   Future<List<String>> getPrefectures() {
     return _geoRepository.getPrefectures();
