@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import '../application/geo_service.dart';
-import '../domain/model/selection_area/selection_area.dart';
+import '../domain/model/selection_area.dart';
 
 class SelectAreaController {
   GeoService _geoService = GeoService(null);
