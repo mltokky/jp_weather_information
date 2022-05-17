@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:dotenv/dotenv.dart';
 
-import 'presentation/current_weather_controller.dart';
-import 'presentation/select_area_controller.dart';
+import 'presentation/controller/current_weather_controller.dart';
+import 'presentation/controller/select_area_controller.dart';
 
 const ENV_KEY_OPEN_WEATHER_MAP = "open_weather_map_app_key";
 
