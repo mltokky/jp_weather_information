@@ -1,5 +1,6 @@
 class TownInfo {
   List<TownInfoResponse> response;
+  TownInfo(this.response);
 }
 
 class TownInfoResponse {
@@ -11,4 +12,6 @@ class TownInfoResponse {
   double x;
   double y;
   String postal;
+
+  TownInfoResponse(this.prefecture, this.city, this.cityKana, this.town, this.townKana, this.x, this.y, this.postal);
 }
