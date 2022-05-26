@@ -32,7 +32,7 @@ class ApiCityInfoLocation {
 
   ApiCityInfoLocation(this.city, this.cityKana);
 
-  factory ApiCityInfoLocation.fromJson(Map<String, dynamic> json) => _$ApiCityInfoLocationFromJsons(json);
+  factory ApiCityInfoLocation.fromJson(Map<String, dynamic> json) => _$ApiCityInfoLocationFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApiCityInfoToJson(this);
+  Map<String, dynamic> toJson() => _$ApiCityInfoLocationToJson(this);
 }
