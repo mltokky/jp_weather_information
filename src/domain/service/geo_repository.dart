@@ -1,7 +1,8 @@
-import '../model/town_info.dart';
+import '../model/api_prefecture_info.dart';
+import '../model/api_town_info.dart';
 
 abstract class GeoRepository {
-  Future<List<String>> getPrefectures();
+  Future<ApiPrefectureInfo> getPrefectures();
   Future<List<String>> getCities(String prefecture);
-  Future<TownInfo> getTowns(String city);
+  Future<ApiTownInfo> getTowns(String city);
 }
