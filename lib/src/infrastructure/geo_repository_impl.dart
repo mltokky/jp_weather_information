@@ -1,5 +1,5 @@
-import '../domain/model/api_prefecture_info.dart';
-import '../domain/model/api_town_info.dart';
+import '../domain/model/api/api_prefecture_info.dart';
+import '../domain/model/api/api_town_info.dart';
 import '../domain/service/geo_repository.dart';
 
 class GeoRepositoryImpl implements GeoRepository {
