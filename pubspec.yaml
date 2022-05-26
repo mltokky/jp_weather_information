@@ -6,3 +6,8 @@ dependencies:
   dotenv: ^4.0.1
   get_it: ^7.2.0
   http: ^0.13.4
+  json_annotation: ^4.5.0
+
+dev_dependencies:
+  json_serializable: ^6.2.0
+  build_runner: ^2.1.11
