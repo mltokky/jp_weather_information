@@ -24,10 +24,9 @@ class ApiCityInfoResponse {
   Map<String, dynamic> toJson() => _$ApiCityInfoResponseToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ApiCityInfoLocation {
   String city;
-  @JsonKey(name: "city_kana")
   String cityKana;
 
   ApiCityInfoLocation(this.city, this.cityKana);
