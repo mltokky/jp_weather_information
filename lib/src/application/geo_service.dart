@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 
-import '../domain/model/api_town_info.dart';
 import '../domain/model/town.dart';
 import '../domain/service/geo_repository.dart';
 
