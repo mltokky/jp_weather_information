@@ -1,9 +1,7 @@
 import 'dart:io';
 
-import 'package:get_it/get_it.dart';
-
 import '../../application/geo_service.dart';
-import '../../domain/model/town_info.dart';
+import '../../domain/model/town.dart';
 
 class CurrentWeatherController {
   final GeoService _geoService = GeoService();
@@ -17,6 +15,9 @@ class CurrentWeatherController {
 
     // 町域を選択
     var selectTown = await _selectTown(selectCity);
+
+    // 選択した町域の情報を表示
+    _printApiTownInfo(selectTown);
   }
 
   Future<String> _selectPrefecture() async {
@@ -51,10 +52,10 @@ class CurrentWeatherController {
     return selectCity;
   }
 
-  Future<TownInfoResponse> _selectTown(String city) async {
+  Future<Town> _selectTown(String city) async {
     var towns = await _geoService.getTowns(city);
 
-    TownInfoResponse? selectTown;
+    Town? selectTown;
     do {
       _printAllValues(towns.map((e) => e.town).toList());
       stdout.write("select town: ");
@@ -96,5 +97,11 @@ class CurrentWeatherController {
 
   void _printInputValueError() {
     stdout.writeln("input value is wrong");
+  }
+
+  void _printApiTownInfo(Town town) {
+    stdout.writeln("--- town info ---");
+    stdout.writeln("${town.prefecture} ${town.city} ${town.town}");
+    stdout.writeln("(${town.x}, ${town.y})");
   }
 }
