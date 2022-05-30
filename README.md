@@ -8,7 +8,7 @@ Dart v2.16.2
 
 ```sh
 $ dart --version
-Dart SDK version: 2.16.2 (stable) (Tue Mar 22 13:15:13 2022 +0100) on "macos_x64"
+Dart SDK version: 2.17.1 (stable) (Tue May 17 17:58:21 2022 +0000) on "macos_arm64"
 ```
 
 # 技術情報
