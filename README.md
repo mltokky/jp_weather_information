@@ -4,8 +4,6 @@ Dart言語練習のために作成した天気情報を取得するためのCLI�
 
 # 開発環境
 
-Dart v2.16.2
-
 ```sh
 $ dart --version
 Dart SDK version: 2.17.1 (stable) (Tue May 17 17:58:21 2022 +0000) on "macos_arm64"
