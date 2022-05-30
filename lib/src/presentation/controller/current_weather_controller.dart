@@ -1,10 +1,13 @@
 import 'dart:io';
 
+import 'package:jp_weather_information/src/application/weather_service.dart';
+
 import '../../application/geo_service.dart';
 import '../../domain/model/town.dart';
 
 class CurrentWeatherController {
   final GeoService _geoService = GeoService();
+  final WeatherService _weatherService = WeatherService();
 
   void execute(String openWeatherMapAppKey) async {
     // 都道府県を選択
@@ -18,6 +21,15 @@ class CurrentWeatherController {
 
     // 選択した町域の情報を表示
     _printApiTownInfo(selectTown);
+
+    // 天気情報を取得＆表示
+    stdout.write("receiving current weather...");
+    var currentWeather = await _weatherService.getCurrentWeather(selectTown.x, selectTown.y);
+    stdout.writeln();
+    stdout.writeln("weather: ${currentWeather.weather}");
+    stdout.writeln("temp: ${currentWeather.temp}");
+    stdout.writeln("humidity: ${currentWeather.humidity}");
+    stdout.writeln("pressure: ${currentWeather.presure}");
   }
 
   Future<String> _selectPrefecture() async {
