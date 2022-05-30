@@ -11,3 +11,4 @@ dependencies:
 dev_dependencies:
   json_serializable: ^6.2.0
   build_runner: ^2.1.11
+  code_builder: ^4.1.0
