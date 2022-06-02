@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:jp_weather_information/src/domain/model/api/api_weather_one_call.dart';
 
@@ -16,7 +15,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
   @override
   Future<ApiWeatherOneCall> weatherOneCall(double lon, double lat, {List<String>? excludes}) async {
     var response = await http.get(Uri.https(_baseDomain, "/data/2.5/onecall", {"lat": "$lat", "lon": "$lon", "exclude": "${excludes?.join(",") ?? ""}", "appid": _appKey}));
-    if (response.statusCode != HttpStatus.ok) {
+    if (response.statusCode != 200) {
       throw Exception("response error: ${response.statusCode}: ${response.body}");
     }
 
