@@ -12,8 +12,6 @@ import 'presentation/controller/current_weather_controller.dart';
 const ENV_KEY_OPEN_WEATHER_MAP = "open_weather_map_app_key";
 
 void main(List<String> args) async {
-  _setupDependencies();
-
   // Appキーの取り出し
   final env = DotEnv(includePlatformEnvironment: true)..load();
   final openWeatherMapAppKey = env[ENV_KEY_OPEN_WEATHER_MAP];
@@ -22,12 +20,14 @@ void main(List<String> args) async {
     exit(1);
   }
 
+  _setupDependencies(openWeatherMapAppKey);
+
   // TODO: Futureを返さないためawaitをつけていないが、そのままアプリ自体が終了しないかを確認する
-  CurrentWeatherController().execute(openWeatherMapAppKey);
+  CurrentWeatherController().execute();
 }
 
-void _setupDependencies() {
+void _setupDependencies(String openWeatherMapAppKey) {
   final getIt = GetIt.instance;
   getIt.registerSingleton<GeoRepository>(GeoRepositoryImpl());
-  getIt.registerSingleton<WeatherRepository>(WeatherRepositoryImpl());
+  getIt.registerSingleton<WeatherRepository>(WeatherRepositoryImpl(openWeatherMapAppKey));
 }

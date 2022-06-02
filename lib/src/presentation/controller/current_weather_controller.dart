@@ -9,7 +9,7 @@ class CurrentWeatherController {
   final GeoService _geoService = GeoService();
   final WeatherService _weatherService = WeatherService();
 
-  void execute(String openWeatherMapAppKey) async {
+  void execute() async {
     // 都道府県を選択
     var selectPref = await _selectPrefecture();
 
