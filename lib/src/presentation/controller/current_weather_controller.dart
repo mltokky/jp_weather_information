@@ -22,22 +22,39 @@ class CurrentWeatherController {
         this._postalCode = flags.postalCode;
 
   void execute() async {
-    // 都道府県を選択
-    var selectPref = await _selectPrefecture();
+    CurrentWeather currentWeather;
+    Town selectTown;
+    if (_postalCode != null) {
+      // 郵便番号で検索
+      selectTown = await _searchByPostalCode(_postalCode!);
+    } else {
+      // 都道府県を選択
+      var selectPref = await _selectPrefecture();
 
-    // 市 or 区を選択
-    var selectCity = await _selectCity(selectPref);
+      // 市 or 区を選択
+      var selectCity = await _selectCity(selectPref);
 
-    // 町域を選択
-    var selectTown = await _selectTown(selectCity);
+      // 町域を選択
+      selectTown = await _selectTown(selectCity);
+    }
 
     // 選択した町域の情報を表示
     stdout.writeln();
     _printApiTownInfo(selectTown);
 
     // 天気情報を取得＆表示
-    var currentWeather = await _weatherService.getCurrentWeather(selectTown.x, selectTown.y);
+    currentWeather = await _weatherService.getCurrentWeather(selectTown.x, selectTown.y);
     _printCurrentWeather(currentWeather);
+  }
+
+  Future<Town> _searchByPostalCode(String postalCode) async {
+    try {
+      var town = await _geoService.getTownByPostalCode(postalCode);
+      return town;
+    } catch (e) {
+      stderr.writeln(e);
+      exit(1);
+    }
   }
 
   Future<String> _selectPrefecture() async {

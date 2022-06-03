@@ -6,4 +6,5 @@ abstract class GeoRepository {
   Future<ApiPrefectureInfo> getPrefectures();
   Future<ApiCityInfo> getCities(String prefecture);
   Future<ApiTownInfo> getTowns(String city);
+  Future<ApiTownInfo> searchByPostalCode(String postalCode);
 }

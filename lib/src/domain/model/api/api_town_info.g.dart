@@ -17,15 +17,17 @@ Map<String, dynamic> _$ApiTownInfoToJson(ApiTownInfo instance) =>
 
 ApiTownInfoResponse _$ApiTownInfoResponseFromJson(Map<String, dynamic> json) =>
     ApiTownInfoResponse(
-      (json['location'] as List<dynamic>)
-          .map((e) => ApiTownInfoLocation.fromJson(e as Map<String, dynamic>))
+      location: (json['location'] as List<dynamic>?)
+          ?.map((e) => ApiTownInfoLocation.fromJson(e as Map<String, dynamic>))
           .toList(),
+      error: json['error'] as String?,
     );
 
 Map<String, dynamic> _$ApiTownInfoResponseToJson(
         ApiTownInfoResponse instance) =>
     <String, dynamic>{
-      'location': instance.location.map((e) => e.toJson()).toList(),
+      'location': instance.location?.map((e) => e.toJson()).toList(),
+      'error': instance.error,
     };
 
 ApiTownInfoLocation _$ApiTownInfoLocationFromJson(Map<String, dynamic> json) =>

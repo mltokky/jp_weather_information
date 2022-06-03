@@ -15,9 +15,10 @@ class ApiTownInfo {
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class ApiTownInfoResponse {
-  List<ApiTownInfoLocation> location;
+  List<ApiTownInfoLocation>? location;
+  String? error;
 
-  ApiTownInfoResponse(this.location);
+  ApiTownInfoResponse({this.location, this.error});
 
   factory ApiTownInfoResponse.fromJson(Map<String, dynamic> json) => _$ApiTownInfoResponseFromJson(json);
 

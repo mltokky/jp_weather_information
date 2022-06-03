@@ -1,4 +1,4 @@
-enum GeoAreaMethod { prefectures, cities, towns }
+enum GeoAreaMethod { prefectures, cities, towns, searchByPostal }
 
 extension GeoAreaMethodExtension on GeoAreaMethod {
   String get name {
@@ -7,8 +7,10 @@ extension GeoAreaMethodExtension on GeoAreaMethod {
         return 'getPrefectures';
       case GeoAreaMethod.cities:
         return 'getCities';
-      default:
+      case GeoAreaMethod.towns:
         return 'getTowns';
+      case GeoAreaMethod.searchByPostal:
+        return 'searchByPostal';
     }
   }
 }
