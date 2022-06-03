@@ -26,6 +26,10 @@ void main(List<String> args) async {
   var flags = AppFlags();
   for (int i = 0; i < args.length; i++) {
     switch (args[i]) {
+      case "--help":
+      case "-h":
+        _printUsage();
+        break;
       case "--random":
         flags.isRandomSelection = true;
         break;
@@ -40,6 +44,10 @@ void main(List<String> args) async {
   }
 
   CurrentWeatherController(flags).execute();
+}
+
+void _printUsage() {
+  // TODO: ここに使い方を出力する処理を追加
 }
 
 void _setupDependencies(String openWeatherMapAppKey) {
