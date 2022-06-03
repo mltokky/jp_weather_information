@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dotenv/dotenv.dart';
 import 'package:get_it/get_it.dart';
 
+import 'domain/model/app_flags.dart';
 import 'domain/service/geo_repository.dart';
 import 'domain/service/weather_reppository.dart';
 import 'infrastructure/geo_repository_impl.dart';
@@ -22,7 +23,23 @@ void main(List<String> args) async {
 
   _setupDependencies(openWeatherMapAppKey);
 
-  CurrentWeatherController(isRandomSelection: args.contains("--random")).execute();
+  var flags = AppFlags();
+  for (int i = 0; i < args.length; i++) {
+    switch (args[i]) {
+      case "--random":
+        flags.isRandomSelection = true;
+        break;
+      case "--postal":
+        if (i + 1 > args.length - 1) {
+          stderr.writeln("must be a specify postal_code value");
+          exit(1);
+        }
+        flags.postalCode = args[++i].replaceAll("-", "");
+        break;
+    }
+  }
+
+  CurrentWeatherController(flags).execute();
 }
 
 void _setupDependencies(String openWeatherMapAppKey) {

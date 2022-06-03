@@ -5,18 +5,21 @@ import 'package:jp_weather_information/src/application/weather_service.dart';
 import 'package:jp_weather_information/src/domain/model/current_weather.dart';
 
 import '../../application/geo_service.dart';
+import '../../domain/model/app_flags.dart';
 import '../../domain/model/town.dart';
 
 class CurrentWeatherController {
   final GeoService _geoService = GeoService();
   final WeatherService _weatherService = WeatherService();
 
-  bool _isRandomSelection = false;
+  bool _isRandomSelection;
+  String? _postalCode;
+
   Random random = Random();
 
-  CurrentWeatherController({bool isRandomSelection = false}) {
-    this._isRandomSelection = isRandomSelection;
-  }
+  CurrentWeatherController(AppFlags flags)
+      : this._isRandomSelection = flags.isRandomSelection,
+        this._postalCode = flags.postalCode;
 
   void execute() async {
     // 都道府県を選択
