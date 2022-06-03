@@ -22,7 +22,7 @@ void main(List<String> args) async {
 
   _setupDependencies(openWeatherMapAppKey);
 
-  CurrentWeatherController().execute();
+  CurrentWeatherController(isRandomSelection: args.contains("--random")).execute();
 }
 
 void _setupDependencies(String openWeatherMapAppKey) {

@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:jp_weather_information/src/application/weather_service.dart';
+import 'package:jp_weather_information/src/domain/model/api/api_weather_one_call.dart';
 import 'package:jp_weather_information/src/domain/model/current_weather.dart';
 
 import '../../application/geo_service.dart';
@@ -9,6 +11,13 @@ import '../../domain/model/town.dart';
 class CurrentWeatherController {
   final GeoService _geoService = GeoService();
   final WeatherService _weatherService = WeatherService();
+
+  bool _isRandomSelection = false;
+  Random random = Random();
+
+  CurrentWeatherController({bool isRandomSelection = false}) {
+    this._isRandomSelection = isRandomSelection;
+  }
 
   void execute() async {
     // 都道府県を選択
@@ -53,37 +62,43 @@ class CurrentWeatherController {
   }
 
   void _printAllValues(List<String> values) {
-    for (var i = 0; i < values.length; i++) {
-      stdout.writeln("[${i + 1}] ${values[i]}");
+    if (!_isRandomSelection) {
+      for (var i = 0; i < values.length; i++) {
+        stdout.writeln("[${i + 1}] ${values[i]}");
+      }
     }
   }
 
   T _selectValue<T>(List<T> options) {
     int? selectedNumber;
 
-    do {
-      // 標準入力から取得
-      stdout.write("select number: ");
-      var input = stdin.readLineSync();
-      if (input == null || input.isEmpty) {
-        _printInputValueEmptyError();
-        continue;
-      }
+    if (_isRandomSelection) {
+      selectedNumber = 1 + random.nextInt(options.length - 1);
+    } else {
+      do {
+        // 標準入力から取得
+        stdout.write("select number: ");
+        var input = stdin.readLineSync();
+        if (input == null || input.isEmpty) {
+          _printInputValueEmptyError();
+          continue;
+        }
 
-      // 文字列→数値へ変換
-      var number = int.tryParse(input, radix: 10);
-      if (number == null) {
-        _printInvalidInputError();
-        continue;
-      }
+        // 文字列→数値へ変換
+        var number = int.tryParse(input, radix: 10);
+        if (number == null) {
+          _printInvalidInputError();
+          continue;
+        }
 
-      // 入力した数値が範囲外のものかどうかをチェック
-      if (number - 1 < 0 || number - 1 >= options.length) {
-        _printInputValueOutOfRangeError();
-        continue;
-      }
-      selectedNumber = number;
-    } while (selectedNumber == null);
+        // 入力した数値が範囲外のものかどうかをチェック
+        if (number - 1 < 0 || number - 1 >= options.length) {
+          _printInputValueOutOfRangeError();
+          continue;
+        }
+        selectedNumber = number;
+      } while (selectedNumber == null);
+    }
 
     return options[selectedNumber - 1];
   }
