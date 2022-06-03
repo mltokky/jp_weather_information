@@ -74,7 +74,7 @@ Current _$CurrentFromJson(Map<String, dynamic> json) => Current(
       json['visibility'] as int,
       (json['wind_speed'] as num).toDouble(),
       json['wind_deg'] as int,
-      (json['wind_gust'] as num).toDouble(),
+      (json['wind_gust'] as num?)?.toDouble(),
       (json['weather'] as List<dynamic>)
           .map((e) => Weather.fromJson(e as Map<String, dynamic>))
           .toList(),
