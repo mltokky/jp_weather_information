@@ -10,5 +10,6 @@ class GeoService {
 
   Future<List<String>> getCities(String prefecture) => _geoRepository.getCities(prefecture).then((value) => value.response.location.map((e) => e.city).toList());
 
-  Future<List<Town>> getTowns(String city) => _geoRepository.getTowns(city).then((value) => value.response.map((e) => Town(e.prefecture, e.city, e.town, e.x, e.y)).toList());
+  Future<List<Town>> getTowns(String city) =>
+      _geoRepository.getTowns(city).then((value) => value.response.location.map((e) => Town(e.prefecture, e.city, e.town, double.parse(e.x), double.parse(e.y))).toList());
 }

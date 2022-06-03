@@ -7,25 +7,42 @@ part of 'api_town_info.dart';
 // **************************************************************************
 
 ApiTownInfo _$ApiTownInfoFromJson(Map<String, dynamic> json) => ApiTownInfo(
-      (json['response'] as List<dynamic>).map((e) => ApiTownInfoResponse.fromJson(e as Map<String, dynamic>)).toList(),
+      ApiTownInfoResponse.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ApiTownInfoToJson(ApiTownInfo instance) => <String, dynamic>{
-      'response': instance.response.map((e) => e.toJson()).toList(),
+Map<String, dynamic> _$ApiTownInfoToJson(ApiTownInfo instance) =>
+    <String, dynamic>{
+      'response': instance.response.toJson(),
     };
 
-ApiTownInfoResponse _$ApiTownInfoResponseFromJson(Map<String, dynamic> json) => ApiTownInfoResponse(
+ApiTownInfoResponse _$ApiTownInfoResponseFromJson(Map<String, dynamic> json) =>
+    ApiTownInfoResponse(
+      (json['location'] as List<dynamic>)
+          .map((e) => ApiTownInfoLocation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$ApiTownInfoResponseToJson(
+        ApiTownInfoResponse instance) =>
+    <String, dynamic>{
+      'location': instance.location.map((e) => e.toJson()).toList(),
+    };
+
+ApiTownInfoLocation _$ApiTownInfoLocationFromJson(Map<String, dynamic> json) =>
+    ApiTownInfoLocation(
       json['prefecture'] as String,
       json['city'] as String,
       json['city_kana'] as String,
       json['town'] as String,
       json['town_kana'] as String,
-      (json['x'] as num).toDouble(),
-      (json['y'] as num).toDouble(),
+      json['x'] as String,
+      json['y'] as String,
       json['postal'] as String,
     );
 
-Map<String, dynamic> _$ApiTownInfoResponseToJson(ApiTownInfoResponse instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiTownInfoLocationToJson(
+        ApiTownInfoLocation instance) =>
+    <String, dynamic>{
       'prefecture': instance.prefecture,
       'city': instance.city,
       'city_kana': instance.cityKana,

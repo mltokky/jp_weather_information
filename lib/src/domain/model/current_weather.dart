@@ -5,6 +5,7 @@ class CurrentWeather {
   double temp;
   int humidity;
   int presure;
+  double windSpeed;
 
-  CurrentWeather(this.weather, this.temp, this.humidity, this.presure);
+  CurrentWeather(this.weather, this.temp, this.humidity, this.presure, this.windSpeed);
 }

@@ -4,7 +4,7 @@ part 'api_town_info.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class ApiTownInfo {
-  List<ApiTownInfoResponse> response = [];
+  ApiTownInfoResponse response;
 
   ApiTownInfo(this.response);
 
@@ -13,20 +13,31 @@ class ApiTownInfo {
   Map<String, dynamic> toJson() => _$ApiTownInfoToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class ApiTownInfoResponse {
+  List<ApiTownInfoLocation> location;
+
+  ApiTownInfoResponse(this.location);
+
+  factory ApiTownInfoResponse.fromJson(Map<String, dynamic> json) => _$ApiTownInfoResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ApiTownInfoResponseToJson(this);
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+class ApiTownInfoLocation {
   String prefecture;
   String city;
   String cityKana;
   String town;
   String townKana;
-  double x;
-  double y;
+  String x;
+  String y;
   String postal;
 
-  ApiTownInfoResponse(this.prefecture, this.city, this.cityKana, this.town, this.townKana, this.x, this.y, this.postal);
+  ApiTownInfoLocation(this.prefecture, this.city, this.cityKana, this.town, this.townKana, this.x, this.y, this.postal);
 
-  factory ApiTownInfoResponse.fromJson(Map<String, dynamic> json) => _$ApiTownInfoResponseFromJson(json);
+  factory ApiTownInfoLocation.fromJson(Map<String, dynamic> json) => _$ApiTownInfoLocationFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApiTownInfoResponseToJson(this);
+  Map<String, dynamic> toJson() => _$ApiTownInfoLocationToJson(this);
 }

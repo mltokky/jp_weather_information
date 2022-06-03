@@ -62,8 +62,8 @@ Map<String, dynamic> _$AlertToJson(Alert instance) => <String, dynamic>{
 
 Current _$CurrentFromJson(Map<String, dynamic> json) => Current(
       json['dt'] as int,
-      json['sunrise'] as int,
-      json['sunset'] as int,
+      json['sunrise'] as int?,
+      json['sunset'] as int?,
       (json['temp'] as num).toDouble(),
       (json['feels_like'] as num).toDouble(),
       json['pressure'] as int,
@@ -78,7 +78,7 @@ Current _$CurrentFromJson(Map<String, dynamic> json) => Current(
       (json['weather'] as List<dynamic>)
           .map((e) => Weather.fromJson(e as Map<String, dynamic>))
           .toList(),
-      (json['pop'] as num).toDouble(),
+      (json['pop'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$CurrentToJson(Current instance) => <String, dynamic>{

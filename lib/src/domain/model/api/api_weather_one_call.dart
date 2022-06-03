@@ -74,8 +74,8 @@ class Current {
   );
 
   int dt;
-  int sunrise;
-  int sunset;
+  int? sunrise;
+  int? sunset;
   double temp;
   double feelsLike;
   int pressure;
@@ -86,9 +86,9 @@ class Current {
   int visibility;
   double windSpeed;
   int windDeg;
-  double windGust;
+  double? windGust;
   List<Weather> weather;
-  double pop;
+  double? pop;
 
   factory Current.fromJson(Map<String, dynamic> json) => _$CurrentFromJson(json);
   Map<String, dynamic> toJson() => _$CurrentToJson(this);

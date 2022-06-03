@@ -14,7 +14,8 @@ class WeatherRepositoryImpl implements WeatherRepository {
 
   @override
   Future<ApiWeatherOneCall> weatherOneCall(double lon, double lat, {List<String>? excludes}) async {
-    var response = await http.get(Uri.https(_baseDomain, "/data/2.5/onecall", {"lat": "$lat", "lon": "$lon", "exclude": "${excludes?.join(",") ?? ""}", "appid": _appKey}));
+    var response =
+        await http.get(Uri.https(_baseDomain, "/data/2.5/onecall", {"lat": "$lat", "lon": "$lon", "exclude": "${excludes?.join(",") ?? ""}", "units": "metric", "lang": "ja", "appid": _appKey}));
     if (response.statusCode != 200) {
       throw Exception("response error -- ${response.statusCode}: ${response.body}");
     }
