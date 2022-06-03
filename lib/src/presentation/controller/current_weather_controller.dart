@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:jp_weather_information/src/application/weather_service.dart';
+import 'package:jp_weather_information/src/domain/model/current_weather.dart';
 
 import '../../application/geo_service.dart';
 import '../../domain/model/town.dart';
@@ -25,11 +26,7 @@ class CurrentWeatherController {
 
     // 天気情報を取得＆表示
     var currentWeather = await _weatherService.getCurrentWeather(selectTown.x, selectTown.y);
-    stdout.writeln("weather: ${currentWeather.weather}");
-    stdout.writeln("temp: ${currentWeather.temp} ℃");
-    stdout.writeln("humidity: ${currentWeather.humidity} %");
-    stdout.writeln("pressure: ${currentWeather.presure} hPa");
-    stdout.writeln("wind speed: ${currentWeather.windSpeed} m/s");
+    _printCurrentWeather(currentWeather);
   }
 
   Future<String> _selectPrefecture() async {
@@ -106,5 +103,14 @@ class CurrentWeatherController {
   void _printApiTownInfo(Town town) {
     stdout.writeln("${town.prefecture} ${town.city} ${town.town}");
     stdout.writeln("[${town.x}, ${town.y}]");
+  }
+
+  void _printCurrentWeather(CurrentWeather weather) {
+    stdout.writeln("datetime: ${weather.datetime.toString()}");
+    stdout.writeln("weather: ${weather.weather}");
+    stdout.writeln("temp: ${weather.temp} ℃");
+    stdout.writeln("humidity: ${weather.humidity} %");
+    stdout.writeln("pressure: ${weather.presure} hPa");
+    stdout.writeln("wind speed: ${weather.windSpeed} m/s");
   }
 }
