@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:jp_weather_information/src/application/weather_service.dart';
-import 'package:jp_weather_information/src/domain/model/api/api_weather_one_call.dart';
 import 'package:jp_weather_information/src/domain/model/current_weather.dart';
 
 import '../../application/geo_service.dart';
