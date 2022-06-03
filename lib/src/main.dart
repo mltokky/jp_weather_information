@@ -22,7 +22,6 @@ void main(List<String> args) async {
 
   _setupDependencies(openWeatherMapAppKey);
 
-  // TODO: Futureを返さないためawaitをつけていないが、そのままアプリ自体が終了しないかを確認する
   CurrentWeatherController().execute();
 }
 
