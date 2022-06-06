@@ -11,22 +11,17 @@ import '../../domain/model/town.dart';
 class CurrentWeatherController {
   final GeoService _geoService = GeoService();
   final WeatherService _weatherService = WeatherService();
+  final Random _random = Random();
+  final AppFlags _flags;
 
-  bool _isRandomSelection;
-  String? _postalCode;
-
-  Random random = Random();
-
-  CurrentWeatherController(AppFlags flags)
-      : this._isRandomSelection = flags.isRandomSelection,
-        this._postalCode = flags.postalCode;
+  CurrentWeatherController(AppFlags flags) : this._flags = flags;
 
   void execute() async {
     CurrentWeather currentWeather;
     Town selectTown;
-    if (_postalCode != null) {
+    if (_flags.postalCode != null) {
       // 郵便番号で検索
-      selectTown = await _searchByPostalCode(_postalCode!);
+      selectTown = await _searchByPostalCode(_flags.postalCode!);
     } else {
       // 都道府県を選択
       var selectPref = await _selectPrefecture();
@@ -81,7 +76,7 @@ class CurrentWeatherController {
   }
 
   void _printAllValues(List<String> values) {
-    if (!_isRandomSelection) {
+    if (!_flags.isRandomSelection) {
       for (var i = 0; i < values.length; i++) {
         stdout.writeln("[${i + 1}] ${values[i]}");
       }
@@ -91,8 +86,8 @@ class CurrentWeatherController {
   T _selectValue<T>(List<T> options) {
     int? selectedNumber;
 
-    if (_isRandomSelection) {
-      selectedNumber = 1 + random.nextInt(options.length - 1);
+    if (_flags.isRandomSelection) {
+      selectedNumber = 1 + _random.nextInt(options.length - 1);
     } else {
       do {
         // 標準入力から取得

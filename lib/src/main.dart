@@ -24,23 +24,9 @@ void main(List<String> args) async {
   _setupDependencies(openWeatherMapAppKey);
 
   var flags = AppFlags();
-  for (int i = 0; i < args.length; i++) {
-    switch (args[i]) {
-      case "--help":
-      case "-h":
-        _printUsage();
-        break;
-      case "--random":
-        flags.isRandomSelection = true;
-        break;
-      case "--postal":
-        if (i + 1 > args.length - 1) {
-          stderr.writeln("must be a specify postal_code value");
-          exit(1);
-        }
-        flags.postalCode = args[++i].replaceAll("-", "");
-        break;
-    }
+  if (!flags.parse(args)) {
+    _printUsage();
+    exit(1);
   }
 
   CurrentWeatherController(flags).execute();
