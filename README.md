@@ -16,6 +16,8 @@ Dart SDK version: 2.17.1 (stable) (Tue May 17 17:58:21 2022 +0000) on "macos_arm
 
 ※OpenWeatherMapを利用するには会員登録が必要なので、予め登録しておく（無料で登録できます）
 
+### 基本的な実行方法
+
 ```sh
 $ dart run ./lib/main.dart
 ```
